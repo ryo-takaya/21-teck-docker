@@ -18,3 +18,4 @@ services:
             context: .
         container_name: cake-php-app
         image: cake-image
+        ports: 80:8888
