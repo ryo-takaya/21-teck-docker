@@ -1,26 +1,28 @@
 version: "3"
 
 
-services: 
+services:
     db:
-        image: mysql:8.0
+        image: mysql:5.6
         restart: always
         volumes:
             - ./mysql/data:/var/lib/mysql
-        environment: 
+        environment:
             MYSQL_ROOT_PASSWORD: roootpassword
             MYSQL_DATABASE: master
             MYSQL_USER: user
             MYSQL_PASSWORD: password
-    
+        ports:
+          - "3308:3306"
+
     app:
         build:
             context: .
         volumes:
             - .:/var/www/html
-        depends_on: 
-            - db    
+        depends_on:
+            - db
         container_name: cake-php-app
         image: cake-image
-        ports: 
+        ports:
             - 8228:80
